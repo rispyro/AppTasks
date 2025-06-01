@@ -3,10 +3,24 @@ using AppTasksLibrary;
 
 namespace AppTasks
 {
+    /// <summary>
+    /// Главная форма приложения для управления задачами и исполнителями
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Объект доступа к данным задач
+        /// </summary>
         private SQLiteTaskInfo Task;
+        /// <summary>
+        /// бъект доступа к данным исполнителей
+        /// </summary>
         private SQLiteExecutor Executor;
+        /// <summary>
+        /// Конструктор главной формы
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="executor"></param>
         public MainForm(SQLiteTaskInfo task, SQLiteExecutor executor)
         {
             InitializeComponent();
@@ -15,6 +29,9 @@ namespace AppTasks
             LoadTasksToGrid();
             LoadExecutors();
         }
+        /// <summary>
+        /// Загружает все задачи в таблицу на форме
+        /// </summary>
         private void LoadTasksToGrid()
         {
             var tasks = Task.GetAllTasks();
@@ -29,6 +46,11 @@ namespace AppTasks
             dataGridTasks.Columns["Id"].Visible = false;
 
         }
+        /// <summary>
+        /// Обработчик кнопки добавления новой задачи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             var executors = Executor.GetAllExecutors();
@@ -43,12 +65,22 @@ namespace AppTasks
                 LoadTasksToGrid();
             }
         }
+        /// <summary>
+        /// Обработчик события загрузки формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             string conn = "Data Source=tasks.db";
             Executor = new SQLiteExecutor(conn);
             LoadExecutors();
         }
+        /// <summary>
+        /// Обработчик кнопки добавления нового исполнителя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNewExecutor_Click(object sender, EventArgs e)
         {
             var form = new ExecutorForm(Executor);
@@ -57,6 +89,9 @@ namespace AppTasks
                 LoadExecutors();
             }
         }
+        /// <summary>
+        /// Загружает всех исполнителей в список на форме
+        /// </summary>
         private void LoadExecutors()
         {
             var executors = Executor.GetAllExecutors();
@@ -66,6 +101,11 @@ namespace AppTasks
                 listExecutors.Items.Add(ex.Name);
             }
         }
+        /// <summary>
+        /// Обработчик кнопки удаления задачи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridTasks.CurrentRow == null)
@@ -86,7 +126,11 @@ namespace AppTasks
                 MessageBox.Show("Ошибка при получении Id задачи!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
+        /// <summary>
+        /// Обработчик кнопки просмотра информации о задаче
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonInfo_Click(object sender, EventArgs e)
         {
             if (dataGridTasks.CurrentRow == null)

@@ -6,11 +6,24 @@ using AppTasksLibrary.classes;
 
 namespace AppTasks
 {
+    /// <summary>
+    /// Форма для отображения и редактирования информации о задаче
+    /// </summary>
     public partial class InfoForm : Form
     {
+        /// <summary>
+        /// Текущая редактируемая задача
+        /// </summary>
         private TaskInfo Task;
+        /// <summary>
+        /// Список доступных исполнителей
+        /// </summary>
         private readonly List<Executor> Executors;
-
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="executors"></param>
         public InfoForm(TaskInfo task, List<Executor> executors)
         {
             InitializeComponent();
@@ -26,6 +39,11 @@ namespace AppTasks
             comboExecutor.SelectedItem = task.Executor;
             checkDone.Checked = task.IsCompleted;
         }
+        /// <summary>
+        /// Обработчик нажатия кнопки "Сохранить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSave_Click(object sender, EventArgs e)
         {
 

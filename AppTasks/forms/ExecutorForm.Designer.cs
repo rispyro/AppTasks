@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExecutorForm));
             label1 = new Label();
             textName = new TextBox();
             label2 = new Label();
@@ -137,6 +138,7 @@
             Controls.Add(textName);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "ExecutorForm";
             Text = "Исполнитель";

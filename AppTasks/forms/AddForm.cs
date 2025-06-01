@@ -3,11 +3,24 @@ using AppTasksLibrary;
 
 namespace AppTasks
 {
+    /// <summary>
+    /// Форма для добавления новой задачи в систему
+    /// </summary>
     public partial class AddForm : Form
     {
+        /// <summary>
+        /// Объект для взаимодействия с базой данных SQLite по исполнителям
+        /// </summary>
         private SQLiteExecutor Executor;
+        /// <summary>
+        /// Объект для взаимодействия с базой данных SQLite по задачам
+        /// </summary>
         private SQLiteTaskInfo Task;
-
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
+        /// <param name="executor"></param>
+        /// <param name="task"></param>
         public AddForm(SQLiteExecutor executor, SQLiteTaskInfo task)
         {
             InitializeComponent();
@@ -15,7 +28,9 @@ namespace AppTasks
             Task = task;
             LoadExecutors();
         }
-
+        /// <summary>
+        /// Загружает список исполнителей в выпадающий список
+        /// </summary>
         private void LoadExecutors()
         {
             var executors = Executor.GetAllExecutors();
@@ -23,7 +38,11 @@ namespace AppTasks
             comboExecutor.DisplayMember = "Name";
             comboExecutor.ValueMember = "Id";
         }
-
+        /// <summary>
+        /// Обработчик события кнопки добавления задачи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddTask_Click(object sender, EventArgs e)
         {
             var existingTasks = Task.GetAllTasks();
@@ -61,16 +80,6 @@ namespace AppTasks
 
             this.DialogResult = DialogResult.OK;
             this.Close();
-        }
-
-        private void AddForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboPriority_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

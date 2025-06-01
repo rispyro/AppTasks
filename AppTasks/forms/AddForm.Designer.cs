@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddForm));
             textTitle = new TextBox();
             textDescription = new TextBox();
             comboExecutor = new ComboBox();
@@ -89,7 +90,6 @@
             comboPriority.Name = "comboPriority";
             comboPriority.Size = new Size(311, 33);
             comboPriority.TabIndex = 3;
-            comboPriority.SelectedIndexChanged += comboPriority_SelectedIndexChanged;
             // 
             // dateTimeStart
             // 
@@ -208,10 +208,10 @@
             Controls.Add(textTitle);
             ForeColor = Color.FromArgb(69, 21, 27);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "AddForm";
             Text = "Новая задача";
-            Load += AddForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

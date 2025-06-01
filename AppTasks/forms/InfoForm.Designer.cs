@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoForm));
             textTitle = new TextBox();
             textDescription = new TextBox();
             comboExecutor = new ComboBox();
@@ -220,6 +221,7 @@
             Controls.Add(textDescription);
             Controls.Add(textTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "InfoForm";
             Text = "Информация";
